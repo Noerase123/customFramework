@@ -16,13 +16,20 @@ $dbhelper = new DbHelper();
 $view = new ViewClass();
 $laravel = new laravelLayout();
 
-if ($laravel->with('success', 'successfully login!')) {
+$str = 'hello {firstname}, welcome to the club!';
 
-    $laravel->get_session('success');
-    
-}
+$person = array(
+    'firstname' => 'Isaac',
+);
+
+echo $laravel->interpolate($str,$person);
 
 
+// $message = "User {username} created";
+
+// $context = array('username' => 'bolivar');
+
+// echo interpolate($message, $context);
 
 // @if ($message = Session::get('success'))
 // <div class="alert alert-success">
