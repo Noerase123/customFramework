@@ -30,7 +30,7 @@ class ViewClass extends DbHelper {
         // return $select;
     }
 
-    public function selectTable($table) {
+    public function show($table) {
         
         $query = "SELECT * FROM $table";
 

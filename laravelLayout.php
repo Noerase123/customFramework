@@ -47,7 +47,7 @@ class laravelLayout extends DbHelper {
         }
     }
 
-    function interpolate($message, array $context = array())
+    public function interpolate($message, array $context = array())
     {
         $replace = array();
         foreach ($context as $key => $val) {
@@ -57,6 +57,33 @@ class laravelLayout extends DbHelper {
         }
     
         return strtr($message, $replace);
+    }
+
+    public function routeGet($url, $source='') {
+    
+        $get = $_GET;
+
+        $get_url = $get[$url];
+        
+        if (isset($get_url)) {
+
+            return header("location:".$source);
+        }
+    }
+
+    public function routePost($data_arr){
+        $post = $_POST;
+        $data = '';
+
+        // $post_data = $post[$submit];
+
+        // if (isset($post_data)) {
+
+            foreach ($data_arr as $key => $value) {
+                $data .= $key." = ".$value." <br>";
+            }
+        return $data;
+        // }
     }
 }
 

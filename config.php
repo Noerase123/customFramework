@@ -16,14 +16,6 @@ $dbhelper = new DbHelper();
 $view = new ViewClass();
 $laravel = new laravelLayout();
 
-$str = 'hello {firstname}, welcome to the club!';
-
-$person = array(
-    'firstname' => 'Isaac',
-);
-
-echo $laravel->interpolate($str,$person);
-
 
 // $message = "User {username} created";
 
