@@ -33,13 +33,14 @@ class DbHelper extends Db {
         
         $string = "UPDATE ".$tableName." SET $query WHERE ".$where_to."";
 
-        if (mysqli_query($this->conn, $string)) {
+        return $string;
+        // if (mysqli_query($this->conn, $string)) {
 
-            return true;
+        //     return true;
 
-        } else {
-            mysqli_error($this->conn);
-        }
+        // } else {
+        //     mysqli_error($this->conn);
+        // }
 
     }
 
@@ -68,6 +69,33 @@ class DbHelper extends Db {
         // $this->result = $query;
 
         return $this->result;
+    }
+
+    public function setAttribute($key, $value) {
+        $string = '';
+
+        $string = $key.' => '.$value;
+
+        return $string;
+    }
+
+    public function attr($arrays) {
+
+        $string = '';
+
+        foreach ($arrays as $array => $value) {
+            // $string .= $array.' => '.$value.', <br>';
+            $string .= $this->setAttribute($array,$value).''; 
+        }
+
+        return $string;
+    }
+
+    public function user(array $type) {
+        
+        foreach ($type as $key => $value) {
+            echo $value.'<br>';
+        }
     }
 
 }
