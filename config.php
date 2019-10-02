@@ -16,27 +16,17 @@ $dbhelper = new DbHelper();
 $view = new ViewClass();
 $laravel = new laravelLayout();
 
+echo fn_push_notification_comment_approval('awtvgaewfcawefawefcawe','2q3c52a35rcs2345rs3');
 
-// if ($topic == TOPIC_COMMENT_APPROVED){
-//     fn_push_notification_comment_approval(TOPIC_COMMENT_APPROVED,COMMENT_APPROVED);
-// } else {
-//     fn_push_notification_comment_approval(TOPIC_COMMENT_DISAPPROVED,COMMENT_DISAPPROVED);
-// }
-
-// $topic=$_REQUEST['topic'];
-//$tag=$_REQUEST['tag'];
-
-fn_push_notification_comment_approval('comment_approved','approved');
-
-function fn_push_notification_comment_approval($topic, $topic_name){
+function fn_push_notification_comment_approval($topic, $family_code){
     define( 'API_ACCESS_KEY', 'AAAADr_G3HM:APA91bG0SsbB9HjMxGCbq8_PC26N9RBmZXAEsoRM4e4O0VNQKBf2Dr2hpHQU_VDleqC1IhrtRYPa97TjTim-UTgUxyBkKXPzAcK169vaAC5f8LIiwx6w1bVcHVU5Th58vzXmPhiuUcEN');
     define('FIREBASE_URL', 'https://fcm.googleapis.com/fcm/send');
 
-    $response = array(     
+    $response = array(
           "condition"       => "'".$topic."' in topics ", 
           "priority"        => "high",
           "data"    => array(
-              "body"        => "Your comment has been ".$topic_name.".",
+              "body"        => "Your comment has been ".$family_code.".",
               "title"       => "Photo gallery",
               
         )
@@ -57,16 +47,41 @@ function fn_push_notification_comment_approval($topic, $topic_name){
     curl_setopt($context, CURLOPT_POSTFIELDS, json_encode($response));
 
     $result = curl_exec($context);
-    echo $result;
+
+    $data1 = str_replace('{',' ',$result);
+
+    $data_in = str_replace('}',' ',$data1);
+
+    $data = explode(':',$data_in);
+
+    return $data[0].' : '.$data[1];
+    // $ex_data = explode(':',$result);
+
+    // return $result;
+
     curl_close( $context );
 
-    $fields = json_encode($response);
-    if ($result) {
-        echo $fields . "<br>";
-        echo "Successful API key: " . API_ACCESS_KEY;
-    }
+    // $fields = json_encode($response);
+    // if ($result) {
+    //     echo $fields . "<br>";
+    //     echo "Successful API key: " . API_ACCESS_KEY;
+    // }
 }
+echo '<br>';
 
+$name = 'relationship Blatus vsgain awdaw';
+
+$str = explode(' ', $name);
+
+if ($str >= 2) {
+
+    foreach ($str as $key => $value) {
+        $substr = substr($value,0,1);
+        $full = ucfirst($substr);
+        echo $full;
+    }
+
+}
 
 // $date = '2019-10-20';
 
@@ -89,7 +104,6 @@ function fn_push_notification_comment_approval($topic, $topic_name){
 
 // echo 'type inserted to be "'.$type['admin'].'"';
 
-
 // $message = "User {username} created";
 
 // $context = array('username' => 'bolivar');
@@ -101,9 +115,6 @@ function fn_push_notification_comment_approval($topic, $topic_name){
 //     <p>{{ $message }}</p>
 // </div>
 // @endif
-
-
-
 
 // echo $laravel->layout();
 
@@ -146,7 +157,5 @@ function fn_push_notification_comment_approval($topic, $topic_name){
 // echo '<br><br>';
 
 // echo $dbhelper->delete("tbl_data", $where);
-
-
 
 ?>
