@@ -1,5 +1,7 @@
 <?php
 
+// namespace framework;
+
 class ViewClass extends DbHelper {
     
     public function selectAllData($table, $select_content = array()) {
@@ -52,6 +54,11 @@ class ViewClass extends DbHelper {
         $query = "SELECT * FROM ".$table." WHERE ".$where_content;
 
         return $query;
+    }
+
+    public function happy() {
+
+        return 'Happy now??';
     }
 
 }

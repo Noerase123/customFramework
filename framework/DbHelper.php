@@ -1,5 +1,6 @@
 <?php 
 
+// namespace framework;
 
 class DbHelper extends Db {
 
@@ -33,14 +34,14 @@ class DbHelper extends Db {
         
         $string = "UPDATE ".$tableName." SET $query WHERE ".$where_to."";
 
-        return $string;
-        // if (mysqli_query($this->conn, $string)) {
+        // return $string;
+        if (mysqli_query($this->conn, $string)) {
 
-        //     return true;
+            return true;
 
-        // } else {
-        //     mysqli_error($this->conn);
-        // }
+        } else {
+            mysqli_error($this->conn);
+        }
 
     }
 
